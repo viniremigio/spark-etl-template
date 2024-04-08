@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "viniremigio-data-engineering-test"
+version = "0.1.0"
+description = "Hello fresh assessment"
+authors = ["Tiago Vinicius <vinicius.remigio@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.8.15"
+pyspark = "3.2.1"
+pandas = "1.2.4"
+pyarrow = "4.0.0"
+numpy = "1.20.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.2.0"
+black = "^22.3.0"
+flake8 = "^3.9.2"
+mypy = "0.931"
+isort = "^5.9.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
