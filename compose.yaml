@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  spark_etl_template:
+    build: .
+    volumes:
+      - ./src/:/app/src/
+      - ./tests/:/app/tests/
+      - ./input/:/app/input/
+      - ./output/:/app/output/
+      - ./main.py:/app/main.py
+    command: tail -f /dev/null

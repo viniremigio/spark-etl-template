@@ -1,15 +1,14 @@
 [tool.poetry]
-name = "viniremigio-data-engineering-test"
+name = "spark-etl-template"
 version = "0.1.0"
-description = "Hello fresh assessment"
+description = "Spark ETL Template"
 authors = ["Tiago Vinicius <vinicius.remigio@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "3.8.15"
-pyspark = "3.2.1"
-pandas = "1.2.4"
-pyarrow = "4.0.0"
-numpy = "1.20.1"
+python = "3.10.14"
+pyspark = "3.5.1"
+pandas = "2.2.1"
+numpy = "1.26.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.2.0"

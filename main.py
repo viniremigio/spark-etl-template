@@ -2,9 +2,6 @@ import argparse
 
 from pyspark.sql import SparkSession
 
-from assessment.task1.recipes_etl import RecipesETL
-from assessment.task2.cook_time_etl import CookTimeETL
-
 if __name__ == "__main__":
 
     # Argument Parser
@@ -23,10 +20,6 @@ if __name__ == "__main__":
     spark = SparkSession.builder.getOrCreate()
 
     # Instantiate ETLs
-    if task == "task1":
-        etl = RecipesETL(input=input, output=output, spark_session=spark)
-    else:
-        etl = CookTimeETL(input=input, output=output, spark_session=spark)
 
     # Run ETL
     etl.run()
