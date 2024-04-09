@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pyspark.sql.functions import col, date_format, lower
 
-from etl import ETL
+from src.etl import ETL
 
 
 class SampleETL(ETL):
@@ -12,12 +12,17 @@ class SampleETL(ETL):
         :return: SampleETL
         """
         schema = (
-            self.spark_session.read.option("mergeSchema", "true")
-            .json(self.input)
+            self.spark_session
+            .read
+            .option("mergeSchema", "true")
+            .option("header", "true")
+            .csv(self.input)
             .schema
         )
-        print(f"INFO - Recipes schema: {schema}")
-        self.df = self.spark_session.read.json(self.input, schema=schema)
+        print(f"INFO -  Extract Step... Schema: {schema}")
+
+        self.df = self.spark_session.read.csv(self.input, schema=schema)
+
         return self
 
     def transform(self) -> SampleETL:
@@ -25,12 +30,14 @@ class SampleETL(ETL):
         The transform function for recipes perform transformations into the original dataframe
         :return: SampleETL
         """
-        print("INFO - Perform transformations")
+        print("INFO - Transformation Step")
+
         self.df = (
-            self.df.withColumn("ingredients", lower(col("ingredients")))
-            .withColumn("year", date_format(col("datePublished"), format="yyyy"))
-            .withColumn("month", date_format(col("datePublished"), format="MM"))
+            self.df.filter(col("cyl") == 4)
+            .withColumnRenamed("cyl", "cylinder")
+            .select("model", "cylinder", "hp")
         )
+
         return self
 
     def load(self) -> SampleETL:
@@ -39,8 +46,8 @@ class SampleETL(ETL):
         Partitioned by year and month
         :return: SampleETL
         """
-        print(f"INFO - Saving into path: {self.output}")
-        self.df.write.partitionBy("year", "month").mode("overwrite").parquet(
-            path=self.output
-        )
+        print(f"INFO - Load Step: {self.output}")
+
+        self.df.coalesce(1).write.mode("overwrite").json(path=self.output)
+
         return self

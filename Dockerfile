@@ -1,7 +1,24 @@
-FROM python:3.10.6-slim
+FROM ubuntu:latest
 
-RUN apt-get update
+# Install Python and pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    apt-get clean;
 
+# Optionally create symbolic links to python and pip
+RUN ln -s /usr/bin/python3 /usr/bin/python
+
+# Install PPA
+RUN apt-get update && \
+    apt-get install software-properties-common -y && \
+    add-apt-repository ppa:openjdk-r/ppa && \
+    apt-get update;
+
+# Install Java 8
+RUN apt-get install -y openjdk-8-jdk && \
+    apt-get clean;
+
+# Python and Poetry setup
 ENV \
     PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \

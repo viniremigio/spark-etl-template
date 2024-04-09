@@ -20,11 +20,9 @@ if __name__ == "__main__":
     # Create a SparkSession
     spark = SparkSession.builder.getOrCreate()
 
-    # Instantiate ETLs
+    # Instantiate ETL
     if task == "sample":
         etl = SampleETL(input=input, output=output, spark_session=spark)
-
-    # Run ETL
-    etl.run()
+        etl.run()
 
     print("INFO - ETL Done!")
