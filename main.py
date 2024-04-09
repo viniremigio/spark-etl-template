@@ -1,6 +1,7 @@
 import argparse
 
 from pyspark.sql import SparkSession
+from src.sample_task.sample_etl import SampleETL
 
 if __name__ == "__main__":
 
@@ -8,7 +9,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=str, required=True)
     parser.add_argument("--output", type=str, required=True)
-    parser.add_argument("--task", type=str, required=True)
+    parser.add_argument("--task", type=str, required=True, default="sample")
 
     args = parser.parse_args()
 
@@ -20,6 +21,8 @@ if __name__ == "__main__":
     spark = SparkSession.builder.getOrCreate()
 
     # Instantiate ETLs
+    if task == "sample":
+        etl = SampleETL(input=input, output=output, spark_session=spark)
 
     # Run ETL
     etl.run()

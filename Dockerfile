@@ -2,7 +2,7 @@ FROM python:3.10-slim-bookworm
 
 RUN apt-get update
 
-ENV YOUR_ENV=${YOUR_ENV} \
+ENV \
     PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONHASHSEED=random \
