@@ -8,5 +8,5 @@ services:
       - ./tests/:/app/tests/
       - ./input/:/app/input/
       - ./output/:/app/output/
-      - ./main.py:/app/main.py
+      - ./mypy.ini:/app/mypy.ini
     command: tail -f /dev/null
