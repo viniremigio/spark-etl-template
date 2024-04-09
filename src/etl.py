@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from abc import ABC
+from abc import ABC, abstractmethod
 
 from pyspark.sql import DataFrame, SparkSession
 from pyspark.sql.types import StructType
@@ -18,12 +18,15 @@ class ETL(ABC):
         self.spark_session = spark_session
         self.df: DataFrame = spark_session.createDataFrame([], schema=StructType([]))
 
+    @abstractmethod
     def extract(self) -> ETL:
         pass
 
+    @abstractmethod
     def transform(self) -> ETL:
         pass
 
+    @abstractmethod
     def load(self) -> ETL:
         pass
 

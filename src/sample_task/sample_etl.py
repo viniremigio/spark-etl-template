@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pyspark.sql.functions import col, date_format, lower
+from pyspark.sql.functions import col
 
 from src.etl import ETL
 
@@ -8,13 +8,11 @@ from src.etl import ETL
 class SampleETL(ETL):
     def extract(self) -> SampleETL:
         """
-        The extract function for recipes reads JSON files and stores it into a DataFrame
+        The extract function reads CSV files and stores it into a DataFrame
         :return: SampleETL
         """
         schema = (
-            self.spark_session
-            .read
-            .option("mergeSchema", "true")
+            self.spark_session.read.option("mergeSchema", "true")
             .option("header", "true")
             .csv(self.input)
             .schema
@@ -27,7 +25,7 @@ class SampleETL(ETL):
 
     def transform(self) -> SampleETL:
         """
-        The transform function for recipes perform transformations into the original dataframe
+        The transform function into the original dataframe
         :return: SampleETL
         """
         print("INFO - Transformation Step")
@@ -42,8 +40,7 @@ class SampleETL(ETL):
 
     def load(self) -> SampleETL:
         """
-        The load function for recipes persists transformed dataframe as parquet files.
-        Partitioned by year and month
+        The load function persists transformed dataframe as JSON files.
         :return: SampleETL
         """
         print(f"INFO - Load Step: {self.output}")

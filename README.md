@@ -14,15 +14,12 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
 
 
 ## Commands
-
 - `make format_code`: rewrites source code using *black* and *isort* to keep it in the standard format
 - `make lint`: checks the source code for syntax violations
-- `make task1`: runs the ETL for task1. The output is located in *output/recipes* folder
-- `make task2`: runs the ETL for task2. The output is located on *output/cook_time_difficulty* folder
+- `make run_etl`: runs the ETL for task1. The output is located in *output/sample* folder
 
 
 ## Sample structure
-
 - The RecipesETL task comprises four methods inherited from the ETL superclass:
   - `extract()`: Read JSON files with recipes data
   - `transform()`: apply a lowercase function to the ingredients' column. This method also creates *year* and *month* columns, used for partitioning
@@ -31,9 +28,6 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
 
 
 ## TODOs
-- Finish docker setup
-- Run a simple transformation
-- Update documentation
 - Logging setup
 - Unit tests
 
