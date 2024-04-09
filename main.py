@@ -17,7 +17,7 @@ if __name__ == "__main__":
     output = args.output
     task = args.task
 
-    # Create a SparkSession
+    # Create a local SparkSession
     spark = SparkSession.builder.getOrCreate()
 
     # Instantiate ETL
