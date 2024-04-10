@@ -20,6 +20,6 @@ lint:
 	docker-compose exec $(IMAGE_NAME) poetry run mypy src --allow-untyped-decorators
 
 run_etl:
-	docker-compose build && \
+	docker-compose up --build --remove-orphans --force-recreate -d
 	docker-compose run --rm $(IMAGE_NAME) \
 		poetry run python main.py --input=input  --output=output/sample_task --task=sample

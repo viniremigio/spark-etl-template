@@ -26,7 +26,6 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
 
 
 ## TODOs
-- Logging setup
 - Unit tests
 
 ## Documentation

@@ -17,7 +17,7 @@ class SampleETL(ETL):
             .csv(self.input)
             .schema
         )
-        print(f"INFO -  Extract Step... Schema: {schema}")
+        self.logger.info(f"Extract Step...\n Schema: {schema}")
 
         self.df = self.spark_session.read.csv(self.input, schema=schema)
 
@@ -28,7 +28,7 @@ class SampleETL(ETL):
         The transform function into the original dataframe
         :return: SampleETL
         """
-        print("INFO - Transformation Step")
+        self.logger.info("Transformation Step")
 
         self.df = (
             self.df.filter(col("cyl") == 4)
@@ -43,7 +43,7 @@ class SampleETL(ETL):
         The load function persists transformed dataframe as JSON files.
         :return: SampleETL
         """
-        print(f"INFO - Load Step: {self.output}")
+        self.logger.info(f"Load Step: {self.output}")
 
         self.df.coalesce(1).write.mode("overwrite").json(path=self.output)
 
