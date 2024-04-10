@@ -17,13 +17,5 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
 - `make test`: Run unit tests 
 - `make run_etl`: runs the ETL for the [sample_etl](src/sample_task/sample_etl.py). The output data will be located in the *output/sample* folder
 
-
-## Sample structure
-- The RecipesETL task comprises four methods inherited from the ETL superclass:
-  - `extract()`: Read JSON files with recipes data
-  - `transform()`: apply a lowercase function to the ingredients' column. This method also creates *year* and *month* columns, used for partitioning
-  - `load()`: save transformed data to parquet files in partitioned folders
-  - `run()`: call ETL methods in the correct order
-
 ## Documentation
 - Further documentation can be placed in the [docs](docs/) folder.
