@@ -4,9 +4,9 @@ This project bootstraps a template to create toy Spark ETL. This is useful to st
 
 
 ## Requirements
-- docker
-- You also need to install [Poetry](https://python-poetry.org/) as dependency management tool
-- If you need to change some library version from *pyproject.toml*, run `poetry lock`.
+- Docker
+- Python > 3.10
+- [Poetry](https://python-poetry.org/) as dependency management tool. If you need to change some library version from *pyproject.toml*, run `poetry lock`.
 
 Then run `poetry env info -p` to make sure the environment setup was done properly.
 
@@ -14,6 +14,7 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
 ## Commands
 - `make format_code`: rewrites source code using *black* and *isort* to keep it in the standard format
 - `make lint`: checks the source code for syntax violations
+- `make test`: Run unit tests 
 - `make run_etl`: runs the ETL for the [sample_etl](src/sample_task/sample_etl.py). The output data will be located in the *output/sample* folder
 
 
@@ -23,10 +24,6 @@ Then run `poetry env info -p` to make sure the environment setup was done proper
   - `transform()`: apply a lowercase function to the ingredients' column. This method also creates *year* and *month* columns, used for partitioning
   - `load()`: save transformed data to parquet files in partitioned folders
   - `run()`: call ETL methods in the correct order
-
-
-## TODOs
-- Unit tests
 
 ## Documentation
 - Further documentation can be placed in the [docs](docs/) folder.
