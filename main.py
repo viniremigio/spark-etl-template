@@ -24,5 +24,3 @@ if __name__ == "__main__":
     if task == "sample":
         etl = SampleETL(input=input, output=output, spark_session=spark)
         etl.run()
-
-    print("INFO - ETL Done!")
